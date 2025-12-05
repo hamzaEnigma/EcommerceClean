@@ -1,5 +1,7 @@
 ﻿using Ecommerce.Application.Products;
 using Ecommerce.Application.Products.Dtos;
+using Ecommerce.Application.Products.Validators;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,8 +30,14 @@ namespace Ecommerce.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateProductDto createProductDto)
         {
-            var id = await _productsService.Create(createProductDto);
-            return Ok(id);
+            var validator = new ProductValidator();
+            ValidationResult result = await validator.ValidateAsync(createProductDto);
+            if (result.IsValid)
+            {
+                var id = await _productsService.Create(createProductDto);
+                return Ok(id);
+            }
+            return BadRequest(result.Errors);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Ecommerce.Application.Products
         {
             logger.LogInformation("getting products");
             var products = await _productsRepo.GetAll();
-            var poductDto =   mapper.Map<IEnumerable<ProductDto>>(products);
+            var poductDto = mapper.Map<IEnumerable<ProductDto>>(products);
             return poductDto;
         }
 
