@@ -1,12 +1,10 @@
-﻿using Ecommerce.Infrastructure.Persistence;
+﻿using Ecommerce.Domain.Repositories;
+using Ecommerce.Infrastructure.Persistence;
+using Ecommerce.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Ecommerce.Infrastructure.Extentions
 {
@@ -17,6 +15,7 @@ namespace Ecommerce.Infrastructure.Extentions
             var connectionString = configuration.GetConnectionString("Default");
             services.AddDbContext<EcomerceContext>(options =>
                options.UseSqlServer(connectionString));
+            services.AddScoped<IProductsRepository, ProductsRepository>();
 
         }
 

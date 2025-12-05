@@ -1,3 +1,4 @@
+using Ecommerce.Application.Extentions;
 using Ecommerce.Infrastructure.Extentions;
 using Ecommerce.Infrastructure.Persistence;
 
@@ -5,6 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddInfrastructure(builder.Configuration); // Extentions
+builder.Services.AddApplication();
+
+
 
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
