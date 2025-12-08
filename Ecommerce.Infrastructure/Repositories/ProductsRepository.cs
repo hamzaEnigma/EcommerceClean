@@ -10,18 +10,30 @@ namespace Ecommerce.Infrastructure.Repositories
         public async Task<Guid> Create(Product product)
         {
             _dbContext.Add(product);
-            await _dbContext.SaveChangesAsync();
+            await SaveChangesAsync();
             return product.ProductId;
+        }
+
+        public async Task DeleteAsync(Product product)
+        {
+            _dbContext.Products.Remove(product);
+            await SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Product>> GetAll()
         {
-            return await _dbContext.Products.Include(temp => temp.Category).ToListAsync();
+            var products = await _dbContext.Products.Include(temp => temp.Category).ToListAsync();
+            return products;
         }
 
         public async Task<Product?> GetById(Guid id)
         {
             return await _dbContext.Products.Include(temp => temp.Category).FirstOrDefaultAsync(x => x.ProductId == id);
+        }
+
+        public async Task SaveChangesAsync()
+        {
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

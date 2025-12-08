@@ -14,7 +14,10 @@ namespace Ecommerce.Infrastructure.Extentions
         {
             var connectionString = configuration.GetConnectionString("Default");
             services.AddDbContext<EcomerceContext>(options =>
-               options.UseSqlServer(connectionString));
+            {
+                options.UseSqlServer(connectionString);
+                options.UseSqlServer(connectionString).EnableSensitiveDataLogging();
+            });
             services.AddScoped<IProductsRepository, ProductsRepository>();
 
         }

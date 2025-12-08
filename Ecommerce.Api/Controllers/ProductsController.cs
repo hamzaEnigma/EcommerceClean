@@ -1,21 +1,23 @@
 ﻿using Ecommerce.Application.Products;
 using Ecommerce.Application.Products.Dtos;
+using Ecommerce.Application.Products.Queries.GetAllProducts;
+using Ecommerce.Application.Products.Queries.GetProductById;
 using Ecommerce.Application.Products.Validators;
 using FluentValidation.Results;
-using Microsoft.AspNetCore.Http;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductsController(IProductsService _productsService) : ControllerBase
+    public class ProductsController(IProductsService _productsService, IMediator _mediator) : ControllerBase
     {
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery]GetAllProductsQuery query)
         {
-            var products = await _productsService.GetAll();
+            var products = await _mediator.Send(query);
             return Ok(products);
         }
 
@@ -23,7 +25,9 @@ namespace Ecommerce.Api.Controllers
 
         public async Task<IActionResult> GetById([FromRoute] Guid id)
         {
-            var productDto = await _productsService.GetById(id);
+            var productDto = await _mediator.Send(new GetProductByIdQuery(id));
+            if (productDto == null)
+                return NotFound();
             return Ok(productDto);
         }
 

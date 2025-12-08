@@ -9,6 +9,7 @@ namespace Ecommerce.Application.Extentions
         {
             var applicationAssembly = typeof(ServiceCollectionExtensions).Assembly;
             services.AddScoped<IProductsService, ProductsService>();
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(applicationAssembly));
             services.AddAutoMapper(applicationAssembly);
 
         }

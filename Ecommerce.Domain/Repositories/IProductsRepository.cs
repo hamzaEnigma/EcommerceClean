@@ -7,5 +7,8 @@ namespace Ecommerce.Domain.Repositories
         Task<IEnumerable<Product>> GetAll();
         Task<Product?> GetById(Guid id);
         Task<Guid> Create(Product product);
+        Task DeleteAsync(Product product);
+        Task SaveChangesAsync();
+
     }
 }
