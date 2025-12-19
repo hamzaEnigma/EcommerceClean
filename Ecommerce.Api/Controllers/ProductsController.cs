@@ -1,8 +1,10 @@
 ﻿using Ecommerce.Application.Products;
+using Ecommerce.Application.Products.Commands.CreateProduct;
 using Ecommerce.Application.Products.Dtos;
 using Ecommerce.Application.Products.Queries.GetAllProducts;
 using Ecommerce.Application.Products.Queries.GetProductById;
 using Ecommerce.Application.Products.Validators;
+using FluentValidation;
 using FluentValidation.Results;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -32,13 +34,13 @@ namespace Ecommerce.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateProductDto createProductDto)
+        public async Task<IActionResult> Create([FromBody] CreateProductQuery createProductDto)
         {
             var validator = new ProductValidator();
             ValidationResult result = await validator.ValidateAsync(createProductDto);
             if (result.IsValid)
             {
-                var id = await _productsService.Create(createProductDto);
+                var id = await _mediator.Send(createProductDto);
                 return Ok(id);
             }
             return BadRequest(result.Errors);

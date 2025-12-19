@@ -1,9 +1,10 @@
-﻿using Ecommerce.Application.Products.Dtos;
+﻿using Ecommerce.Application.Products.Commands.CreateProduct;
+using Ecommerce.Application.Products.Dtos;
 using FluentValidation;
 
 namespace Ecommerce.Application.Products.Validators
 {
-    public class ProductValidator : AbstractValidator<CreateProductDto>
+    public class ProductValidator : AbstractValidator<CreateProductQuery>
     {
         public ProductValidator()
         {
