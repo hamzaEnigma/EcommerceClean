@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Ecommerce.Application.Products.Commands.CreateProduct
 {
-    public class CreateProductQuery : IRequest<Guid>
+    public class CreateProductCommand : IRequest<Guid>
     {
         public string Name { get; set; } = null!;
 

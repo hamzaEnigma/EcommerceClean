@@ -14,7 +14,7 @@ namespace Ecommerce.Application.Products.Profilers
             CreateMap<Category, CategoryDto>();
             CreateMap<ProductDto, Product>();
             CreateMap<CategoryDto, Category>();
-            CreateMap<CreateProductQuery, Product>();
+            CreateMap<CreateProductCommand, Product>();
 
         }
     }

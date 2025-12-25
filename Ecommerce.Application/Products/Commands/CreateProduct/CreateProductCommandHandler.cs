@@ -6,10 +6,10 @@ using Microsoft.Extensions.Logging;
 
 namespace Ecommerce.Application.Products.Commands.CreateProduct
 {
-    public class CreateProductHandler(IProductsRepository _productsRepo, ILogger<ProductsService> logger, IMapper mapper)
-        : IRequestHandler<CreateProductQuery, Guid>
+    public class CreateProductCommandHandler(IProductsRepository _productsRepo, ILogger<CreateProductCommandHandler> logger, IMapper mapper)
+        : IRequestHandler<CreateProductCommand, Guid>
     {
-        public async Task<Guid> Handle(CreateProductQuery request, CancellationToken cancellationToken)
+        public async Task<Guid> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
             logger.LogInformation("Creating product");
             var product = mapper.Map<Product>(request);

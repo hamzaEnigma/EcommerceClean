@@ -4,7 +4,7 @@ using FluentValidation;
 
 namespace Ecommerce.Application.Products.Validators
 {
-    public class ProductValidator : AbstractValidator<CreateProductQuery>
+    public class ProductValidator : AbstractValidator<CreateProductCommand>
     {
         public ProductValidator()
         {

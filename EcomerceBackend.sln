@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.Infrastructure", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{BD77860B-314E-4E9C-8C21-9C091D018B39}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{182E08F5-7DF5-45FE-B414-D32C496B07E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.Application.Tests", "Ecommerce.Application.Tests\Ecommerce.Application.Tests.csproj", "{4C1EA321-D99C-43E9-AC8B-A7A4C807A3D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +39,10 @@ Global
 		{A9A7C3FE-F73A-4885-82FE-EB639EF5D8A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9A7C3FE-F73A-4885-82FE-EB639EF5D8A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9A7C3FE-F73A-4885-82FE-EB639EF5D8A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C1EA321-D99C-43E9-AC8B-A7A4C807A3D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C1EA321-D99C-43E9-AC8B-A7A4C807A3D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C1EA321-D99C-43E9-AC8B-A7A4C807A3D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C1EA321-D99C-43E9-AC8B-A7A4C807A3D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,5 +52,6 @@ Global
 		{6FCDFFB0-F081-4687-8460-DBE1AC526404} = {BD77860B-314E-4E9C-8C21-9C091D018B39}
 		{70355AC9-7C71-4767-BCEE-F942534A0693} = {BD77860B-314E-4E9C-8C21-9C091D018B39}
 		{A9A7C3FE-F73A-4885-82FE-EB639EF5D8A6} = {BD77860B-314E-4E9C-8C21-9C091D018B39}
+		{4C1EA321-D99C-43E9-AC8B-A7A4C807A3D1} = {182E08F5-7DF5-45FE-B414-D32C496B07E9}
 	EndGlobalSection
 EndGlobal
