@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
-using Castle.Core.Logging;
 using Ecommerce.Application.Products.Commands.CreateProduct;
 using Ecommerce.Domain.Entities;
 using Ecommerce.Domain.Repositories;
-using Ecommerce.Infrastructure.Repositories;
 using Microsoft.Extensions.Logging;
 using Moq;
 
@@ -28,7 +26,7 @@ namespace Ecommerce.Application.Tests.Products.Commands.CreateProduct
             var result = await commandHandler.Handle(command,default);
 
             // Assert
-            Assert.IsType<Guid>(result);
+            Xunit.Assert.IsType<Guid>(result);
             mockProductsRepo.Verify(r=>r.Create(Product), Times.Once);
         }
     }

@@ -4,9 +4,9 @@ using FluentValidation;
 
 namespace Ecommerce.Application.Products.Validators
 {
-    public class ProductValidator : AbstractValidator<CreateProductCommand>
+    public class CreateProductCommandValidator : AbstractValidator<CreateProductCommand>
     {
-        public ProductValidator()
+        public CreateProductCommandValidator()
         {
             RuleFor(p => p.Name)
                 .NotEmpty().WithMessage("Product name is required.")

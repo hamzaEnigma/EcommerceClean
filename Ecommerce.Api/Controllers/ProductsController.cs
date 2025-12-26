@@ -36,7 +36,7 @@ namespace Ecommerce.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateProductCommand createProductDto)
         {
-            var validator = new ProductValidator();
+            var validator = new CreateProductCommandValidator();
             ValidationResult result = await validator.ValidateAsync(createProductDto);
             if (result.IsValid)
             {
