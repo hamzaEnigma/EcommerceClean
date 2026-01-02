@@ -19,6 +19,7 @@ namespace Ecommerce.Infrastructure.Extentions
                 options.UseSqlServer(connectionString).EnableSensitiveDataLogging();
             });
             services.AddScoped<IProductsRepository, ProductsRepository>();
+            services.AddScoped<ICategoriesRepository, CategoriesRepository>();
 
         }
 

@@ -13,7 +13,7 @@ namespace Ecommerce.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductsController(IProductsService _productsService, IMediator _mediator) : ControllerBase
+    public class ProductsController(IMediator _mediator) : ControllerBase
     {
 
         [HttpGet]
