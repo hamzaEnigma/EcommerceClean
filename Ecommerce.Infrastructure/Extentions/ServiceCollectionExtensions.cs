@@ -20,6 +20,7 @@ namespace Ecommerce.Infrastructure.Extentions
             });
             services.AddScoped<IProductsRepository, ProductsRepository>();
             services.AddScoped<ICategoriesRepository, CategoriesRepository>();
+            services.AddScoped<IOrdersRepository, OrdersRepository>();
 
         }
 

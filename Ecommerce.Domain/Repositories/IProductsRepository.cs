@@ -8,6 +8,7 @@ namespace Ecommerce.Domain.Repositories
         Task<Product?> GetById(Guid id);
         Task<Guid> Create(Product product);
         Task DeleteAsync(Product product);
+        Task<List<Product>> GetByIdsAsync(List<Guid> ids);
         Task SaveChangesAsync();
 
     }

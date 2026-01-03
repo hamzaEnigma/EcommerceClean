@@ -31,6 +31,13 @@ namespace Ecommerce.Infrastructure.Repositories
             return await _dbContext.Products.Include(temp => temp.Category).FirstOrDefaultAsync(x => x.ProductId == id);
         }
 
+        public async Task<List<Product>> GetByIdsAsync(List<Guid> ids)
+        {
+           var tasks = ids.Select(id => GetById(id));
+            var products = await Task.WhenAll(tasks);
+            return products.Where(p => p != null).ToList()!;
+        }
+
         public async Task SaveChangesAsync()
         {
             await _dbContext.SaveChangesAsync();

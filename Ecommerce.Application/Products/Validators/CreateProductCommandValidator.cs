@@ -12,7 +12,7 @@ namespace Ecommerce.Application.Products.Validators
                 .NotEmpty().WithMessage("Product name is required.")
                 .MinimumLength(3).WithMessage("Product name must bet more than 3 caracters.");
 
-            RuleFor(p=>p.PurchasePrice).NotEmpty().WithMessage("Purchase price is required.")
+            RuleFor(p => p.PurchasePrice).NotEmpty().WithMessage("Purchase price is required.")
                 .GreaterThan(0).WithMessage("Purchase price must be greater than zero.");
 
             RuleFor(p => p.SellPrice).NotEmpty().WithMessage("Sell price is required.")
