@@ -17,11 +17,7 @@ namespace Ecommerce.Application.Orders.Validators
         public CreateOrderDetailValidator(IProductsRepository _productsRepository)
         {
             RuleFor(x => x.ProductId)
-                .MustAsync(async (id, cancellation) =>
-                {
-                    var product = await _productsRepository.GetById(id);
-                    return product != null;
-                })
+                .NotEmpty()
                 .WithMessage(p=> $"Produit avec id: {p.ProductId} etre existant dans la base de donnée ");
 
             RuleFor(x => x.Quantity).InclusiveBetween((short)1,short.MaxValue).WithMessage("Quantity must be at least 1.");

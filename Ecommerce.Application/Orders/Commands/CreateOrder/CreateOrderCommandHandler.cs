@@ -22,7 +22,7 @@ namespace Ecommerce.Application.Orders.Commands.CreateOrder
                 var order = new Order()
                 {
                     OrderId = Guid.NewGuid(),
-                    OrderDate = request.OrderDate ?? DateTime.UtcNow
+                    OrderDate =  DateTime.UtcNow
                 };
                 await _ordersRepository.Add(order);
 
@@ -32,27 +32,29 @@ namespace Ecommerce.Application.Orders.Commands.CreateOrder
 
                 foreach (var detail in request.OrderDetails)
                 {
-                    var product = products.First(p => p.ProductId == detail.ProductId);
+                    var product = products.FirstOrDefault(p => p.ProductId == detail.ProductId) ?? throw new Exception($"Produit avec id^{detail.ProductId} est inexistant"); ;
 
                     OrderDetail orderDetail = new OrderDetail()
                     {
                         ProductId = detail.ProductId,
-                        Quantity = detail.Quantity ?? 1,
-                        SalePrice = product.SellPrice ?? throw new Exception($"Produit avec id : {product.ProductId} has sale price negative"),
+                        Quantity = detail.Quantity,
+                        SalePrice = product.SellPrice ?? 0,
                         OrderId = order.OrderId
                     };
                     await _ordersRepository.AddDetail(orderDetail);
 
-                    // END of transaction
-                    await trasaction.CommitAsync(cancellationToken);
                 }
+                await trasaction.CommitAsync(cancellationToken);
+                // END of transaction
+
                 return order.OrderId;
+
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error creating order");
                 await trasaction.RollbackAsync(cancellationToken);
-                throw;
+                throw new Exception($"Erreur lors de la création de la commande : {ex.Message}", ex);
             }
 
         }
